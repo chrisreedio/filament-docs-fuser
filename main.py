@@ -47,6 +47,7 @@ def combine_markdown_files(directory):
                 file_content = f.read()
                 # Strip specific import lines
                 file_content = re.sub(r'import .+ from "@components/.+\.astro"\n', '', file_content)
+                file_content = re.sub(r'<AutoScreenshot[^>]+>', '', file_content)
                 # Inject 'file:' tag with the relative path, excluding 'packages/'
                 relative_path = os.path.relpath(filepath, directory)
                 file_content = front_matter_pattern.sub(
